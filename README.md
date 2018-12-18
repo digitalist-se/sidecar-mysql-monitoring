@@ -1,5 +1,6 @@
 # sidecar-mysql-monitoring
-Docker or Kubernetes sidecar MySQL monitoring tool for Prometheus
+Docker or Kubernetes sidecar MySQL monitoring tool for Prometheus.  
+Here you can find a detailed description about this tool: https://medium.com/@Adrian_Balcan/mysql-monitor-sidecar-adventure-2f30df33bd33
 
 ## How to use it
 
