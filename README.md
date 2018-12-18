@@ -10,14 +10,15 @@ Run: `sudo docker run -p 9100:9100 adrianbalcan/sidecar-mysql-monitoring`
 - Grafana Dashboard: [https://grafana.com/dashboards/8367](https://grafana.com/dashboards/8367)
 
 
-### Kubernetes integration
+## Kubernetes integration
 
+### Pod/Deployment/Statefullset/Daemonset
 ```
       - image: adrianbalcan/sidecar-mysql-monitoring:latest
         name: sidecar-mysql-monitoring
         ports:
         - containerPort: 9100
-          name: metrics
+          name: mysql-metrics
           protocol: TCP
         resources:
           limits:
@@ -26,4 +27,22 @@ Run: `sudo docker run -p 9100:9100 adrianbalcan/sidecar-mysql-monitoring`
           requests:
             cpu: 10m
             memory: 10Mi
+```
+### ServiceMonitor
+```
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: sidecar-mysql-monitoring
+  labels:
+    k8s-app: my-website
+spec:
+  selector:
+    matchLabels:
+      k8s-app: my-website
+  namespaceSelector:
+    any: true
+  endpoints:
+  - port: mysql-metrics
+    interval: 30s
 ```
