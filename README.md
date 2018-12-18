@@ -8,7 +8,7 @@ Run: `sudo docker run -p 9100:9100 adrianbalcan/sidecar-mysql-monitoring`
 - This tool is using Scapy (a tcpdump python library), also the reason why it requires root access.
 - If you have the MySQL DB on other port, you can change it in `mysql-stats.py` file.
 - Grafana Dashboard: [https://grafana.com/dashboards/8367](https://grafana.com/dashboards/8367)
-
+- The python script will flush the scraped data after 30 seconds, so keep your ServiceMonitor interval at 30s.
 
 ## Kubernetes integration
 
